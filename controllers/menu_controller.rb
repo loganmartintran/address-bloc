@@ -9,11 +9,12 @@ class MenuController
 
   def main_menu
     puts "Main Menu - #{address_book.entries.count} entries"
-    puts "1 - View all entires"
+    puts "1 - View all entries"
     puts "2 - Create an entry"
     puts "3 - Search for an entry"
     puts "4 - Import entires from a CSV"
-    puts "5 - Exit"
+    puts "5 - View entry by entry number"
+    puts "6 - Exit"
     print "Enter your selection: "
 
     selection = gets.to_i
@@ -35,6 +36,10 @@ class MenuController
       read_csv
       main_menu
     when 5
+      system "clear"
+      view_entry
+      main_menu
+    when 6
       puts "See you later!"
       exit(0)
     else
@@ -72,6 +77,22 @@ class MenuController
     system "clear"
     puts "New entry created"
 
+  end
+
+  def view_entry
+    print "Please enter an entry number to view: "
+
+    view = gets.chomp.to_i
+
+    if view < address_book.entries.length
+      puts address_book.entries[view]
+      puts "Hit enter to return to the main menu"
+      gets.chomp
+      system "clear"
+    else
+      puts "#{view} is not an existing entry"
+      view_entry
+    end
   end
 
   def search_entries
