@@ -122,5 +122,54 @@ RSpec.describe AddressBook do
       end
     end
 
+    describe "#binary_search" do
+      it "searches AddressBook for a non-existent entry" do
+        book.import_from_csv("entries.csv")
+        entry = book.binary_search("Dan")
+        expect(entry).to be(nil)
+      end
+
+      it "searches AddressBook for Bill" do
+        book.import_from_csv("entries.csv")
+        entry = book.binary_search("Bill")
+        expect(entry).to be_a(Entry)
+        check_entry(entry, "Bill", "555-555-5555", "bill@blocmail.com")
+      end
+
+      it "searches AddressBook for Bob" do
+        book.import_from_csv("entries.csv")
+        entry = book.binary_search("Bob")
+        expect(entry).to be_an(Entry)
+        check_entry(entry, "Bob", "333-333-3333", "bob@blocmail.com")
+      end
+
+      it "searches AddressBook for Joe" do
+        book.import_from_csv("entries.csv")
+        entry = book.binary_search("Joe")
+        expect(entry).to be_an(Entry)
+        check_entry(entry, "Joe", "777-777-7777", "joe@blocmail.com")
+      end
+
+      it "searches AddressBook for Sally" do
+        book.import_from_csv("entries.csv")
+        entry = book.binary_search("Sally")
+        expect(entry).to be_an(Entry)
+        check_entry(entry, "Sally", "222-222-2222", "sally@blocmail.com")
+      end
+
+      it "searches AddressBook for Rachel" do
+        book.import_from_csv("entries.csv")
+        entry = book.binary_search("Rachel")
+        expect(entry).to be_an(Entry)
+        check_entry(entry, "Rachel", "999-999-9999", "rachel@blocmail.com")
+      end
+
+      it "searches AddressBook for Billy" do
+        book.import_from_csv("entries.csv")
+        entry = book.binary_search("Billy")
+        expect(entry).to be(nil)
+      end
+    end
+
   end
 end
