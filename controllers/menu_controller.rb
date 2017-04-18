@@ -14,7 +14,8 @@ class MenuController
     puts "3 - Search for an entry"
     puts "4 - Import entires from a CSV"
     puts "5 - View entry by entry number"
-    puts "6 - Exit"
+    puts "6 - NUKE!"
+    puts "7 - Exit"
     print "Enter your selection: "
 
     selection = gets.to_i
@@ -40,6 +41,9 @@ class MenuController
       view_entry
       main_menu
     when 6
+      nuke
+      main_menu
+    when 7
       puts "See you later!"
       exit(0)
     else
@@ -203,5 +207,27 @@ class MenuController
         puts entry.to_s
         search_submenu(entry)
       end
+    end
+
+    def nuke
+      system "clear"
+      puts "Are you sure you want to nuke all the homies?"
+      puts "Y - yeeeeeehaw nuke 'em!"
+      puts "N - no way! I love my friends."
+
+      selection = gets.chomp.upcase
+
+      case selection
+        when "Y"
+          address_book.entries.clear
+          system "clear"
+          puts "BYE FELICIA!"
+        when "N"
+          system "clear"
+          main_menu
+        else
+          system "clear"
+          puts "#{selection} is not a valid choice. Can you read directions?"
+        end
     end
 end
