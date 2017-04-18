@@ -44,7 +44,6 @@ class AddressBook
   end
 
   def binary_search(name)
-    # entries = entries.sort_by { |entry| entry.name }
     lower = 0
     upper = entries.length - 1
 
